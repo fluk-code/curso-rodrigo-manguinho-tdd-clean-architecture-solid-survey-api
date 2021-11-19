@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dis",                              // Diretorio onde será gerado o resultado da compiação
+    "module": "commonjs",                           // Define o formato que será compilado os arquivos .js
+    "target": "ES2019",                             // Define o a versão que será compilado os arquivos .js (node.green/#ES2019)
+    "esModuleInterop": true,                        // 
+    "allowJs": true,                                // Incluir no dist arquivos de configurações em formato .js
+  }
+}
