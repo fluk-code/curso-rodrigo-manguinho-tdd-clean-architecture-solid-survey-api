@@ -5,5 +5,6 @@
     "target": "ES2019",                             // Define o a versão que será compilado os arquivos .js (node.green/#ES2019)
     "esModuleInterop": true,                        // 
     "allowJs": true,                                // Incluir no dist arquivos de configurações em formato .js
+    "strictNullChecks": true                        // Define que força a serem informado os tipo explicitamente.
   }
 }
