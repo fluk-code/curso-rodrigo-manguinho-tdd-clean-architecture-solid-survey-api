@@ -5,8 +5,8 @@
   "author": "Felipe Ferreira <ferreirafelipericardo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "test:staged": "jest"
+    "test": "jest --passWithNoTests",
+    "test:staged": "jest --passWithNoTests"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
