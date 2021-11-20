@@ -1,10 +1,9 @@
 import { IHttpRequest, IHttpResponse } from '../protocols/http'
 import { MissingParamError } from '../errors/missing-param-error'
-import { badRequest } from '../helpers/http-helper'
+import { badRequest, serverError } from '../helpers/http-helper'
 import { IController } from '../protocols/controller'
 import { IEmailValidator } from '../protocols/email-validator'
 import { InvalidParamError } from '../errors/invalid-param-error'
-import { ServerError } from '../errors/server-error'
 
 export class SignUpController implements IController {
   private readonly emailValidator: IEmailValidator
@@ -28,11 +27,8 @@ export class SignUpController implements IController {
       }
 
       return badRequest(new MissingParamError('email'))
-    } catch {
-      return {
-        statusCode: 500,
-        body: new ServerError()
-      }
+    } catch (error) {
+      return serverError()
     }
   }
 }
