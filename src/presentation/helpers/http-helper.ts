@@ -1,6 +1,13 @@
 import { ServerError } from '../errors/server-error'
 import { IHttpResponse } from '../protocols/http'
 
+export const success = (data: any): IHttpResponse => {
+  return {
+    statusCode: 200,
+    body: data
+  }
+}
+
 export const badRequest = (error: Error): IHttpResponse => {
   return {
     statusCode: 400,
