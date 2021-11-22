@@ -13,18 +13,13 @@ export class DBAddAccount implements IAddAccount {
   }
 
   async add (accountData: IAddAccountModel): Promise<IAccountModel> {
-    const hasedPassword = await this.encrypter.encrypt(accountData.password)
+    const hashedPassword = await this.encrypter.encrypt(accountData.password)
 
-    await this.addAccountRepository.add({
+    const account = await this.addAccountRepository.add({
       ...accountData,
-      password: hasedPassword
+      password: hashedPassword
     })
 
-    return await new Promise(resolve => resolve({
-      id: 'any_id',
-      name: 'any_name',
-      email: 'any_email',
-      password: 'any_password'
-    }))
+    return account
   }
 }
