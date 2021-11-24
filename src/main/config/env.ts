@@ -1,4 +1,4 @@
 export default {
-  mongoURL: process.env.MONGO_URL ?? 'mongodb://127.0.0.1:27017/clean-node-api',
+  mongoURL: process.env.MONGO_URL ?? 'mongodb://root:survey@localhost:27017/clean-node-api?authSource=admin',
   port: process.env.PORT ?? 5050
 }
