@@ -3,6 +3,17 @@ import { badRequest } from '../../helpers/http-helper'
 import { IHttpRequest } from '../../protocols'
 import { LoginController } from './login'
 
+interface ISutTypes {
+  sut: LoginController
+}
+
+const makeSut = (): ISutTypes => {
+  const sut = new LoginController()
+  return {
+    sut
+  }
+}
+
 const fakeHttpRequest = (): IHttpRequest => ({
   body: {
     email: 'any_email',
@@ -12,7 +23,7 @@ const fakeHttpRequest = (): IHttpRequest => ({
 
 describe('Login Controller', () => {
   it('Should return 400 if email is provided', async () => {
-    const sut = new LoginController()
+    const { sut } = makeSut()
     const httpRequest = fakeHttpRequest()
     httpRequest.body.email = null
 
@@ -21,7 +32,7 @@ describe('Login Controller', () => {
   })
 
   it('Should return 400 if password is provided', async () => {
-    const sut = new LoginController()
+    const { sut } = makeSut()
     const httpRequest = fakeHttpRequest()
     httpRequest.body.password = null
 
