@@ -1,4 +1,4 @@
-import { MissingParamError } from '../../errors'
+import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest } from '../../helpers/http-helper'
 import { IHttpRequest } from '../../protocols'
 import { IEmailValidator } from '../signup/signup-protocols'
@@ -27,7 +27,7 @@ const makeEmailValidator = (): IEmailValidator => {
   return new EmailValidatorStub()
 }
 
-const fakeHttpRequest = (): IHttpRequest => ({
+const makeFakeHttpRequest = (): IHttpRequest => ({
   body: {
     email: 'any_email@mail.com',
     password: 'any_password'
@@ -37,7 +37,7 @@ const fakeHttpRequest = (): IHttpRequest => ({
 describe('Login Controller', () => {
   it('Should return 400 if email is provided', async () => {
     const { sut } = makeSut()
-    const httpRequest = fakeHttpRequest()
+    const httpRequest = makeFakeHttpRequest()
     httpRequest.body.email = null
 
     const httpResponse = await sut.handle(httpRequest)
@@ -46,19 +46,27 @@ describe('Login Controller', () => {
 
   it('Should return 400 if password is provided', async () => {
     const { sut } = makeSut()
-    const httpRequest = fakeHttpRequest()
+    const httpRequest = makeFakeHttpRequest()
     httpRequest.body.password = null
 
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(badRequest(new MissingParamError('password')))
   })
 
+  it('Should return 400 if an invalid email is provided', async () => {
+    const { sut, emailValidatorStub } = makeSut()
+    jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+
+    const httpResponse = await sut.handle(makeFakeHttpRequest())
+    expect(httpResponse).toEqual(badRequest(new InvalidParamError('email')))
+  })
+
   it('Should call EmailValidator with correct email', async () => {
     const { sut, emailValidatorStub } = makeSut()
     const isValidEmailSpy = jest.spyOn(emailValidatorStub, 'isValid')
 
-    await sut.handle(fakeHttpRequest())
+    await sut.handle(makeFakeHttpRequest())
 
-    expect(isValidEmailSpy).toHaveBeenCalledWith(fakeHttpRequest().body.email)
+    expect(isValidEmailSpy).toHaveBeenCalledWith(makeFakeHttpRequest().body.email)
   })
 })
