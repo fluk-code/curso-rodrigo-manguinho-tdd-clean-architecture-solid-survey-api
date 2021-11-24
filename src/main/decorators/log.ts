@@ -8,14 +8,7 @@ export class LogControllerDecorator implements IController {
   }
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    await this.controller.handle(httpRequest)
-    return {
-      statusCode: 200,
-      body: {}
-    }
-    // // if (httpResponse.statusCode === 500) {
-
-    // // }
-    // return httpResponse
+    const httpResponse = await this.controller.handle(httpRequest)
+    return httpResponse
   }
 }
