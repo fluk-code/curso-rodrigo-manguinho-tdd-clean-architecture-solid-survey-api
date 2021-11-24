@@ -21,7 +21,7 @@ export class LoginController implements IController {
       const requiredFields = ['email', 'password']
       for (const field of requiredFields) {
         if (!httpRequest.body[field]) {
-          return await new Promise(resolve => resolve(badRequest(new MissingParamError(field))))
+          return badRequest(new MissingParamError(field))
         }
       }
 
@@ -29,11 +29,11 @@ export class LoginController implements IController {
 
       const isValidEmail = this.emailValidator.isValid(email)
       if (!isValidEmail) {
-        return await new Promise(resolve => resolve(badRequest(new InvalidParamError('email'))))
+        return badRequest(new InvalidParamError('email'))
       }
 
       const token = await this.authentication.auth(email, password)
-      return await new Promise(resolve => resolve(success(token)))
+      return success(token)
     } catch (error) {
       return serverError(error)
     }
