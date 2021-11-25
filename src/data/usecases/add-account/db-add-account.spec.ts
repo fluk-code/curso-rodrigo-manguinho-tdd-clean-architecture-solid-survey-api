@@ -1,5 +1,6 @@
-import { IAccountModel, IAddAccountModel, IAddAccountRepository, IEncrypter } from './db-add-account-protocols'
+
 import { DBAddAccount } from './db-add-account'
+import { IAccountModel, IAddAccountModel, IAddAccountRepository, IEncrypter } from './db-add-account-protocols'
 
 const makeEncrypter = (): IEncrypter => {
   class EncryptStub implements IEncrypter {
