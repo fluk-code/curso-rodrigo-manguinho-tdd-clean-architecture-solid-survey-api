@@ -118,9 +118,9 @@ describe('DBAuthentication UseCase', () => {
       new Promise((resolve, reject) => reject(new Error()))
     )
 
-    const promiseLoadAccount = sut.auth(makeFakeAuthentication())
+    const promiseHashComparer = sut.auth(makeFakeAuthentication())
 
-    await expect(promiseLoadAccount).rejects.toThrow()
+    await expect(promiseHashComparer).rejects.toThrow()
   })
 
   it('Should return null if HashComparer returns false', async () => {
@@ -140,5 +140,16 @@ describe('DBAuthentication UseCase', () => {
     await sut.auth(makeFakeAuthentication())
 
     expect(genereteTokenSpy).toHaveBeenCalledWith(makeFakeAccount().id)
+  })
+
+  it('Should throw if TokenGenerator throws', async () => {
+    const { sut, tokenGeneratorStub } = makeSut()
+    jest.spyOn(tokenGeneratorStub, 'generate').mockReturnValueOnce(
+      new Promise((resolve, reject) => reject(new Error()))
+    )
+
+    const promiseTokenGenerate = sut.auth(makeFakeAuthentication())
+
+    await expect(promiseTokenGenerate).rejects.toThrow()
   })
 })
