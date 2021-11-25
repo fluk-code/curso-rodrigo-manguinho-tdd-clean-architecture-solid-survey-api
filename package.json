@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev src/main/server.ts",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --forceExit",
     "test:staged": "yarn test -- --findRelatedTests",
     "test:ci": "yarn test -- --coverage",
     "test:verbose": "jest --passWithNoTests --runInBand",

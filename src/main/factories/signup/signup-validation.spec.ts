@@ -3,8 +3,8 @@ import { CompareFieldValidation } from '../../../presentation/helpers/validators
 import { EmailValidation } from '../../../presentation/helpers/validators/email-validation'
 import { RequiredFieldValidation } from '../../../presentation/helpers/validators/required-field-validation'
 import { ValidationComposite } from '../../../presentation/helpers/validators/validation-composite'
-import { IValidation } from '../../../presentation/helpers/validators/valitation'
 import { IEmailValidator } from '../../../presentation/protocols/email-validator'
+import { IValidation } from '../../../presentation/protocols/valitation'
 import { makeSignUpValidation } from './signup-validation'
 
 jest.mock('../../../presentation/helpers/validators/validation-composite')
