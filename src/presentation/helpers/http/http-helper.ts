@@ -1,5 +1,5 @@
-import { ServerError, UnauthorizedError } from '../errors'
-import { IHttpResponse } from '../protocols/http'
+import { ServerError, UnauthorizedError } from '../../errors'
+import { IHttpResponse } from '../../protocols'
 
 export const success = (data: any): IHttpResponse => {
   return {
