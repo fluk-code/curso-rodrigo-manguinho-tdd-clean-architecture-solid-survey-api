@@ -13,6 +13,6 @@ export class DBAuthentication implements IAuthentication {
   async auth (aithentication: IAuthenticationModel): Promise<string> {
     await this.loadAccountByEmailRepository.load(aithentication.email)
 
-    return 'any_return'
+    return null as unknown as string
   }
 }
