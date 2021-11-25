@@ -152,4 +152,12 @@ describe('DBAuthentication UseCase', () => {
 
     await expect(promiseTokenGenerate).rejects.toThrow()
   })
+
+  it('Should return TokenGenerator if token on success', async () => {
+    const { sut } = makeSut()
+
+    const accessToken = await sut.auth(makeFakeAuthentication())
+
+    expect(accessToken).toBe('valid_token')
+  })
 })
