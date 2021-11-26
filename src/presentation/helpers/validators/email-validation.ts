@@ -3,16 +3,10 @@ import { IEmailValidator } from '../../protocols/email-validator'
 import { IValidation } from '../../protocols/valitation'
 
 export class EmailValidation implements IValidation {
-  private readonly emailValidator: IEmailValidator
-  private readonly fieldName: string
-
   constructor (
-    emailValidator: IEmailValidator,
-    fieldName: string
-  ) {
-    this.emailValidator = emailValidator
-    this.fieldName = fieldName
-  }
+    private readonly emailValidator: IEmailValidator,
+    private readonly fieldName: string
+  ) {}
 
   validate (input: any): any {
     const isValidEmail = this.emailValidator.isValid(input[this.fieldName])

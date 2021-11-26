@@ -3,16 +3,10 @@ import { IValidation } from '../../protocols/valitation'
 import { IAuthentication, IController, IHttpRequest, IHttpResponse } from './login-protocols'
 
 export class LoginController implements IController {
-  private readonly validation: IValidation
-  private readonly authentication: IAuthentication
-
   constructor (
-    authentication: IAuthentication,
-    validation: IValidation
-  ) {
-    this.validation = validation
-    this.authentication = authentication
-  }
+    private readonly authentication: IAuthentication,
+    private readonly validation: IValidation
+  ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

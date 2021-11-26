@@ -1,13 +1,9 @@
 import { IValidation } from '../../protocols/valitation'
 
 export class ValidationComposite implements IValidation {
-  private readonly validations: IValidation[]
-
   constructor (
-    validations: IValidation[]
-  ) {
-    this.validations = validations
-  }
+    private readonly validations: IValidation[]
+  ) {}
 
   validate (input: any): any {
     for (const validation of this.validations) {
