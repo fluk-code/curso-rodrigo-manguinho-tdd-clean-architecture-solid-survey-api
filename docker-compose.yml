@@ -6,11 +6,12 @@ services:
     image: clean-node-survey-api
     container_name: suvey-api
     restart: always
-    command: npm start
+    command: yarn debug
     volumes:
       - .:/usr/app
     ports:
       - 5050:5050
+      - 9222:9222
     depends_on:
       - mongodb
     networks: 
