@@ -1,7 +1,7 @@
 import { MissingParamError } from '../../errors'
 import { badRequest, serverError, success, unauthorized } from '../../helpers/http/http-helper'
 import { IValidation } from '../../protocols/valitation'
-import { LoginController } from './login'
+import { LoginController } from './login-controller'
 import { IAuthentication, IAuthenticationModel, IHttpRequest } from './login-protocols'
 
 const makeValidation = (): IValidation => {
