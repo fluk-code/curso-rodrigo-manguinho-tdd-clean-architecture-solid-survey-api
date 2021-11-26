@@ -6,8 +6,8 @@ COPY package.json .
 
 RUN npm install --only=prod
 
-COPY dist ./dist
+# COPY dist ./dist
 
-EXPOSE 5000
-
-CMD ["npm", "start"]
+# EXPOSE 5050
+ 
+# CMD ["npm", "start"]

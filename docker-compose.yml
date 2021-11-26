@@ -1,13 +1,40 @@
-version: '3.3'
+version: '3.7'
 
 services:
-
-  mongo:
-    image: mongo:4
-    container_name: database_survey
+  app: 
+    build: .
+    image: clean-node-survey-api
+    container_name: suvey-api
     restart: always
+    command: npm start
+    volumes:
+      - .:/usr/app
+    ports:
+      - 5050:5050
+    depends_on:
+      - mongodb
+    networks: 
+      - survey-network
+
+
+  mongodb:
+    image: mongo:4
+    container_name: database-survey
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: survey
-    ports:
-      - 27017:27017
+    networks: 
+      - survey-network
+
+networks: 
+    survey-network:
+      driver: bridge
+
+volumes: 
+  mongodata:
+    driver: local
