@@ -2,13 +2,13 @@ version: '3.7'
 
 services:
   app: 
-    build: .
-    image: clean-node-survey-api
+    image: node:14
     container_name: suvey-api
+    working_dir: /usr/app
     restart: always
-    command: yarn debug
+    command: bash -c "yarn install --only=prod && yarn debug"
     volumes:
-      - .:/usr/app
+      - ./:/usr/app/
     ports:
       - 5050:5050
       - 9222:9222
