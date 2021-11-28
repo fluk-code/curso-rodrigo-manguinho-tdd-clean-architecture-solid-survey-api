@@ -1,6 +1,6 @@
 import { IAddAccount, IAccountModel, IAddAccountModel, IHttpRequest, IAuthentication, IAuthenticationModel } from './signup-protocols'
-import { ServerError, MissingParamError } from '../../errors'
-import { badRequest, serverError, success } from '../../helpers/http/http-helper'
+import { ServerError, MissingParamError, EmailInUseError } from '../../errors'
+import { badRequest, forbidden, serverError, success } from '../../helpers/http/http-helper'
 import { SignUpController } from './signup-controller'
 import { IValidation } from '../../protocols/valitation'
 
@@ -140,5 +140,15 @@ describe('Signup Controller', () => {
     const httpResponse = await sut.handle(makeFakeRequest())
 
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  it('Should return 403 if AddAccount returns null', async () => {
+    const { sut, addAccountStub } = makeSut()
+    jest.spyOn(addAccountStub, 'add').mockReturnValueOnce(
+      new Promise(resolve => resolve(null as unknown as IAccountModel))
+    )
+
+    const httpResponse = await sut.handle(makeFakeRequest())
+    expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
   })
 })
