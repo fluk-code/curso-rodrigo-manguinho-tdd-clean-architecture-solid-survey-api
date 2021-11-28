@@ -1,4 +1,4 @@
-import { IAddAccount, IAccountModel, IAddAccountModel, IHttpRequest } from './signup-protocols'
+import { IAddAccount, IAccountModel, IAddAccountModel, IHttpRequest, IAuthentication, IAuthenticationModel } from './signup-protocols'
 import { ServerError, MissingParamError } from '../../errors'
 import { badRequest, serverError, success } from '../../helpers/http/http-helper'
 import { SignUpController } from './signup-controller'
@@ -11,6 +11,15 @@ const makeAddAccount = (): IAddAccount => {
     }
   }
   return new AddAccountStub()
+}
+
+const makeAuthentication = (): IAuthentication => {
+  class AuthenticationStub implements IAuthentication {
+    async auth (authentication: IAuthenticationModel): Promise<string> {
+      return await new Promise(resolve => resolve('valid_token'))
+    }
+  }
+  return new AuthenticationStub()
 }
 
 const makeValidation = (): IValidation => {
@@ -42,17 +51,20 @@ interface ISutTypes {
   sut: SignUpController
   addAccountStub: IAddAccount
   validationStub: IValidation
+  authenticationStub: IAuthentication
 }
 
 const makeSut = (): ISutTypes => {
   const addAccountStub = makeAddAccount()
   const validationStub = makeValidation()
-  const sut = new SignUpController(addAccountStub, validationStub)
+  const authenticationStub = makeAuthentication()
+  const sut = new SignUpController(addAccountStub, validationStub, authenticationStub)
 
   return {
     sut,
     addAccountStub,
-    validationStub
+    validationStub,
+    authenticationStub
   }
 }
 
@@ -103,5 +115,19 @@ describe('Signup Controller', () => {
 
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(badRequest(new MissingParamError('any_field')))
+  })
+
+  it('Should call Authentication with corrects values', async () => {
+    const { sut, authenticationStub } = makeSut()
+    const authSpy = jest.spyOn(authenticationStub, 'auth')
+
+    await sut.handle(makeFakeRequest())
+
+    const { email, password } = makeFakeRequest().body
+
+    expect(authSpy).toHaveBeenCalledWith({
+      email,
+      password
+    })
   })
 })
