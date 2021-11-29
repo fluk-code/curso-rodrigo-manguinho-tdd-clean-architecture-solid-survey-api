@@ -1,6 +1,6 @@
 export interface IAddSurveyModel {
   question: string
-  answers: ISurveyAnswer
+  answers: [ISurveyAnswer]
 }
 
 export interface ISurveyAnswer {
