@@ -1,8 +1,8 @@
 import { IAddAccount, IAccountModel, IAddAccountModel, IHttpRequest, IAuthentication, IAuthenticationModel } from './signup-protocols'
-import { ServerError, MissingParamError, EmailInUseError } from '../../errors'
-import { badRequest, forbidden, serverError, success } from '../../helpers/http/http-helper'
+import { ServerError, MissingParamError, EmailInUseError } from '../../../errors'
+import { badRequest, forbidden, serverError, success } from '../../../helpers/http/http-helper'
 import { SignUpController } from './signup-controller'
-import { IValidation } from '../../protocols/valitation'
+import { IValidation } from '../../../protocols/valitation'
 
 const makeAddAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
