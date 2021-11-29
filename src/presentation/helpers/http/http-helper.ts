@@ -8,6 +8,13 @@ export const success = (data: any): IHttpResponse => {
   }
 }
 
+export const noContent = (): IHttpResponse => {
+  return {
+    statusCode: 204,
+    body: null
+  }
+}
+
 export const badRequest = (error: Error): IHttpResponse => {
   return {
     statusCode: 400,
