@@ -1,7 +1,6 @@
-language: nodej_s
-nodej_s: 
-  version: 14
-
-script:
+language: node_js
+node_js: 
+  - '14'
+script: 
   - eslint 'src/**'
   - npm run test:coveralls
