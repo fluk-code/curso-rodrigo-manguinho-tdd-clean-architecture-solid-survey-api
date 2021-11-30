@@ -15,6 +15,15 @@ const makeFakeAddSurvey = (): IAddSurveyModel => ({
   }]
 })
 
+const makeFakeAddOtherSurvey = (): IAddSurveyModel => ({
+  question: 'other_question',
+  answers: [{
+    image: 'other_image',
+    answer: 'other_answer'
+  }],
+  date: new Date()
+})
+
 const makeSut = (): SurveyMongoRepository => {
   return new SurveyMongoRepository()
 }
@@ -40,6 +49,18 @@ describe('Survey Mongo Repository', () => {
 
       const survey = await surveyCollection.findOne(makeFakeAddSurvey())
       expect(survey).toBeTruthy()
+    })
+  })
+
+  describe('loadAll()', () => {
+    it('Should load all surveys on success', async () => {
+      await surveyCollection.insertMany([makeFakeAddSurvey(), makeFakeAddOtherSurvey()])
+
+      const sut = makeSut()
+      const surveys = await sut.loadAll()
+
+      expect(surveys.length).toBe(2)
+      expect(surveys[0].question).toBe('any_question')
     })
   })
 })
