@@ -17,6 +17,7 @@ export class AddSurveyController implements IController {
       const { question, answers } = httpRequest.body
 
       await this.addSurvey.add({
+        date: new Date(),
         question,
         answers
       })

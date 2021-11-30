@@ -1,4 +1,5 @@
 export interface IAddSurveyModel {
+  date?: Date
   question: string
   answers: ISurveyAnswer[]
 }
