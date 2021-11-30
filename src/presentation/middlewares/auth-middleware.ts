@@ -18,7 +18,6 @@ export class AuthMiddleware implements IMiddleware {
           return success({ accountId: account.id })
         }
       }
-
       return forbidden(new AccessDeniedError())
     } catch (error) {
       return serverError(new Error())
