@@ -15,6 +15,10 @@ const makeFakeAddSurvey = (): IAddSurveyModel => ({
   }]
 })
 
+const makeSut = (): SurveyMongoRepository => {
+  return new SurveyMongoRepository()
+}
+
 describe('Survey Mongo Repository', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL as string)
@@ -29,15 +33,13 @@ describe('Survey Mongo Repository', () => {
     await MongoHelper.disconnect()
   })
 
-  const makeSut = (): SurveyMongoRepository => {
-    return new SurveyMongoRepository()
-  }
+  describe('add()', () => {
+    it('Should add a survey on success', async () => {
+      const sut = makeSut()
+      await sut.add(makeFakeAddSurvey())
 
-  it('Should add a survey on success', async () => {
-    const sut = makeSut()
-    await sut.add(makeFakeAddSurvey())
-
-    const survey = await surveyCollection.findOne(makeFakeAddSurvey())
-    expect(survey).toBeTruthy()
+      const survey = await surveyCollection.findOne(makeFakeAddSurvey())
+      expect(survey).toBeTruthy()
+    })
   })
 })
