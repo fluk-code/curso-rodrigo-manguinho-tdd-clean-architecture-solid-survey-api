@@ -1,12 +1,9 @@
+import { ISurveyAnswerModel } from '../models/survey'
+
 export interface IAddSurveyModel {
   date?: Date
   question: string
-  answers: ISurveyAnswer[]
-}
-
-export interface ISurveyAnswer {
-  image?: string
-  answer: string
+  answers: ISurveyAnswerModel[]
 }
 
 export interface IAddSurvey {
