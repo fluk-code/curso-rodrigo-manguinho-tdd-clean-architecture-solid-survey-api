@@ -29,13 +29,13 @@ const makeLoadAccountByTokenRepository = (): IloadAccountByTokenRepository => {
   return new LoadAccountByTokenRepositoryStub()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: DbLoadAccountByToken
   decrypterStub: IDecrypter
   loadAccountByTokenRepositoryStub: IloadAccountByTokenRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const loadAccountByTokenRepositoryStub = makeLoadAccountByTokenRepository()
   const decrypterStub = makeDecrypter()
   const sut = new DbLoadAccountByToken(decrypterStub, loadAccountByTokenRepositoryStub)

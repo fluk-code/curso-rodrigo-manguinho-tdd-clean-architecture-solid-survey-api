@@ -35,12 +35,12 @@ const makeLoadSurveysRepository = (): ILoadSurveysRepository => {
   return new LoadSurveysRepository()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: DbLoadSurveys
   loadSurveysRepositoryStub: ILoadSurveysRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const loadSurveysRepositoryStub = makeLoadSurveysRepository()
   const sut = new DbLoadSurveys(loadSurveysRepositoryStub)
 

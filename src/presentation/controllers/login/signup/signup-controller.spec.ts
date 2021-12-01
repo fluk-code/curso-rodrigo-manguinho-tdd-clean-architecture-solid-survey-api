@@ -47,14 +47,14 @@ const makeFakeRequest = (): IHttpRequest => ({
   }
 })
 
-interface ISutTypes {
+type TSutTypes = {
   sut: SignUpController
   addAccountStub: IAddAccount
   validationStub: IValidation
   authenticationStub: IAuthentication
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const addAccountStub = makeAddAccount()
   const validationStub = makeValidation()
   const authenticationStub = makeAuthentication()

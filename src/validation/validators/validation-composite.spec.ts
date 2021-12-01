@@ -12,12 +12,12 @@ const makeValidation = (): IValidation => {
   return new ValidationStub()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: ValidationComposite
   validationStubs: IValidation[]
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const validationStubs = [makeValidation(), makeValidation()]
   const sut = new ValidationComposite(validationStubs)
 
