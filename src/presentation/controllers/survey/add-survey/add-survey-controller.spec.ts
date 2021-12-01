@@ -31,13 +31,13 @@ const makeAddSurvey = (): IAddSurvey => {
   return new AddSurveyStub()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: AddSurveyController
   validationStub: IValidation
   addSurveyStub: IAddSurvey
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const validationStub = makeValidation()
   const addSurveyStub = makeAddSurvey()
   const sut = new AddSurveyController(validationStub, addSurveyStub)

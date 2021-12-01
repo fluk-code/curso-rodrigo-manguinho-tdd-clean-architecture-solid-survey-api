@@ -60,7 +60,7 @@ const makeUpdateAccessTokenRepository = (): IUpdateAccessTokenRepository => {
   return new UpdateAccessTokenRepository()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: DBAuthentication
   loadAccountByEmailRepositoryStub: ILoadAccountByEmailRepository
   hashComparerStub: IHashComparer
@@ -68,7 +68,7 @@ interface ISutTypes {
   updateAccessTokenRepositoryStub: IUpdateAccessTokenRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository()
   const hashComparerStub = makeHashComparer()
   const encrypterStub = makeEncrypter()

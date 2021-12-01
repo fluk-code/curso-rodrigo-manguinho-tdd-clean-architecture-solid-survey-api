@@ -44,13 +44,13 @@ const makeFakeServerError = (): IHttpResponse => {
   return serverError(fakeError)
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: LogControllerDecorator
   controllerStub: IController
   logErrorRepositoryStub: ILogErrorRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const controllerStub = makeController()
   const logErrorRepositoryStub = makeLogErrorRepository()
   const sut = new LogControllerDecorator(controllerStub, logErrorRepositoryStub)

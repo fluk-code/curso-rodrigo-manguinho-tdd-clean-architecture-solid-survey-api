@@ -13,13 +13,13 @@ const makeValidation = (): IValidation => {
   return new ValidationStub()
 }
 
-interface ISutTypes {
+type TSutTypes = {
   sut: LoginController
   authenticationStub: IAuthentication
   validationStub: IValidation
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSutTypes => {
   const validationStub = makeValidation()
   const authenticationStub = makeAuthentication()
 
