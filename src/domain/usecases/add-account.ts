@@ -1,11 +1,7 @@
 import { IAccountModel } from '@/domain/models/account'
 
-export interface IAddAccountModel {
-  name: string
-  email: string
-  password: string
-}
+export type TAddAccountModel = Omit<IAccountModel, 'id'>
 
 export interface IAddAccount {
-  add: (accountData: IAddAccountModel) => Promise<IAccountModel>
+  add: (accountData: TAddAccountModel) => Promise<IAccountModel>
 }

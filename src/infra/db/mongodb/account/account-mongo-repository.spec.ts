@@ -1,11 +1,11 @@
 import { AccountMongoRepository } from './account-mongo-repository'
 import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
-import { IAddAccountModel } from '@/domain/usecases/add-account'
+import { TAddAccountModel } from '@/domain/usecases/add-account'
 import { Collection } from 'mongodb'
 
 let accountCollection: Collection
 
-const makeFakeAddAccount = (): IAddAccountModel => ({
+const makeFakeAddAccount = (): TAddAccountModel => ({
   name: 'any_name',
   email: 'any_email@mail.com',
   password: 'any_password'

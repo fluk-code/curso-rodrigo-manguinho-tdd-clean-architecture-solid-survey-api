@@ -1,7 +1,7 @@
 
 import { IAuthenticationModel } from '../authentication/db-authentication-protocols'
 import { DBAddAccount } from './db-add-account'
-import { IAccountModel, IAddAccountModel, IAddAccountRepository, IHasher, ILoadAccountByEmailRepository } from './db-add-account-protocols'
+import { IAccountModel, TAddAccountModel, IAddAccountRepository, IHasher, ILoadAccountByEmailRepository } from './db-add-account-protocols'
 
 const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements ILoadAccountByEmailRepository {
@@ -24,7 +24,7 @@ const makeHasher = (): IHasher => {
 
 const makeAddAccountRepository = (): IAddAccountRepository => {
   class AddAccountRepositoryStub implements IAddAccountRepository {
-    async add (accountData: IAddAccountModel): Promise<IAccountModel> {
+    async add (accountData: TAddAccountModel): Promise<IAccountModel> {
       return await new Promise(resolve => resolve(makeFakeAccount()))
     }
   }
@@ -43,7 +43,7 @@ const makeFakeAccount = (): IAccountModel => ({
   password: 'hashed_password'
 })
 
-const makeFakeAccountData = (): IAddAccountModel => ({
+const makeFakeAccountData = (): TAddAccountModel => ({
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
