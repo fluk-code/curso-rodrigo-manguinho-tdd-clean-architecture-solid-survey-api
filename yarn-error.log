@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn add madule-alias
+  /usr/bin/node /usr/bin/yarn add tsconfig-paths -D
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/>:/snap/bin
 
 Yarn version: 
   1.22.10
@@ -14,27 +14,18 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.npmjs.org/madule-alias: Not found
-      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (events.js:400:28)
-      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (events.js:400:28)
-      at IncomingMessage.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (events.js:519:28)
-      at IncomingMessage.emit (events.js:412:35)
-      at endReadableNT (internal/streams/readable.js:1334:12)
-      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+  Error: EACCES: permission denied, mkdir '/home/felipe/Projects/Rodrigo_Manguinho/curso-rodrigo-manguinho-tdd-clean-architecture-solid/node_modules/ts-jest/node_modules/json5'
 
 npm manifest: 
   {
     "name": "curso-rodrigo-manguinho-tdd-clean-architecture-solid",
-    "version": "1.4.0",
+    "version": "2.0.1",
     "main": "index.js",
     "author": "Felipe Ferreira <ferreirafelipericardo@gmail.com>",
     "license": "MIT",
     "scripts": {
       "start": "node dist/main/server.js",
+      "start:dev": "ts-node-dev src/main/server.ts",
       "build": "rimraf dist && tsc -p tsconfig.build.json",
       "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
       "docker:up": "yarn run build && docker-compose up -d",
@@ -81,12 +72,16 @@ npm manifest:
       "bcrypt": "^5.0.1",
       "express": "^4.17.1",
       "jsonwebtoken": "^8.5.1",
+      "module-alias": "^2.2.2",
       "mongodb": "^4.2.0",
       "nodemon": "^2.0.15",
       "validator": "^13.7.0"
     },
     "engines": {
       "node": "14.x"
+    },
+    "_moduleAlias": {
+      "@": "dist"
     }
   }
 
@@ -4089,6 +4084,11 @@ Lockfile:
     version "3.0.5"
     resolved "https://registry.yarnpkg.com/mockdate/-/mockdate-3.0.5.tgz#789be686deb3149e7df2b663d2bc4392bc3284fb"
     integrity sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==
+  
+  module-alias@^2.2.2:
+    version "2.2.2"
+    resolved "https://registry.yarnpkg.com/module-alias/-/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
+    integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
   
   mongodb-connection-string-url@^2.2.0:
     version "2.2.0"
