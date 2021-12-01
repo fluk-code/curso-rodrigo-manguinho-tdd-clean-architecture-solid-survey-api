@@ -1,8 +1,8 @@
 import { IHttpRequest, IHttpResponse, IController, IAddAccount, IAuthentication } from './signup-protocols'
 
-import { success, badRequest, serverError, forbidden } from '../../../helpers/http/http-helper'
-import { IValidation } from '../../../protocols/valitation'
-import { EmailInUseError } from '../../../errors'
+import { success, badRequest, serverError, forbidden } from '@/presentation/helpers/http/http-helper'
+import { IValidation } from '@/presentation/protocols/valitation'
+import { EmailInUseError } from '@/presentation/errors'
 
 export class SignUpController implements IController {
   constructor (

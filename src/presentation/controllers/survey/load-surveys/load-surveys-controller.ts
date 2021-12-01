@@ -1,5 +1,5 @@
 import { IController, IHttpRequest, IHttpResponse, ILoadSurveys } from './load-surveys-protocols'
-import { noContent, serverError, success } from '../../../helpers/http/http-helper'
+import { noContent, serverError, success } from '@/presentation/helpers/http/http-helper'
 
 export class LoadSurveysController implements IController {
   constructor (

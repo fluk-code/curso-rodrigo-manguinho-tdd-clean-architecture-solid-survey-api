@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'
 import { JwtAdapter } from './jwt-adapter'
+import jwt from 'jsonwebtoken'
 
 const makeSut = (): JwtAdapter => {
   return new JwtAdapter('secret')

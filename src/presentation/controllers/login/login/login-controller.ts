@@ -1,6 +1,6 @@
-import { badRequest, serverError, success, unauthorized } from '../../../helpers/http/http-helper'
-import { IValidation } from '../../../protocols/valitation'
 import { IAuthentication, IController, IHttpRequest, IHttpResponse } from './login-protocols'
+import { badRequest, serverError, success, unauthorized } from '@/presentation/helpers/http/http-helper'
+import { IValidation } from '@/presentation/protocols/valitation'
 
 export class LoginController implements IController {
   constructor (

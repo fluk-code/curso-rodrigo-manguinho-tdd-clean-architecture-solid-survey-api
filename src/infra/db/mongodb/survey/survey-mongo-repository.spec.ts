@@ -1,7 +1,7 @@
-import { Collection } from 'mongodb'
-import { IAddSurveyModel } from '../../../../domain/usecases/add-survey'
-import { MongoHelper } from '../helpers/mongo-helper'
 import { SurveyMongoRepository } from './survey-mongo-repository'
+import { MongoHelper } from '@/infra/db/mongodb//helpers/mongo-helper'
+import { IAddSurveyModel } from '@/domain/usecases/add-survey'
+import { Collection } from 'mongodb'
 
 let surveyCollection: Collection
 

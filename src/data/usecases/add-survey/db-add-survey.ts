@@ -1,4 +1,4 @@
-import { IAddSurvey, IAddSurveyModel } from '../../../domain/usecases/add-survey'
+import { IAddSurvey, IAddSurveyModel } from '@/domain/usecases/add-survey'
 import { IAddSurveyRepository } from './db-add-survey-protocols'
 
 export class DbAddSurvey implements IAddSurvey {

@@ -7,15 +7,17 @@
     //"allowJs": true,                              // Incluir no dist arquivos de configurações em formato .js
     "strictNullChecks": true,                       // Define que força a serem informado os tipo explicitamente.
     "sourceMap": true,                              // Gera um arquivo .map ao buildar para realizar o link dos arquivos TS com JS para debugs
-    "rootDir": "src"                                // Definir a pasta src como root do projeto
+    "rootDir": "src",                               // Definir a pasta src como root do projeto
+    // Cria mapeamento para os diretorios
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   // Arquivos a serem publicados
   "include": [  
     "src"
   ],
   // Arquivos a serem ignorados
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": []
 }

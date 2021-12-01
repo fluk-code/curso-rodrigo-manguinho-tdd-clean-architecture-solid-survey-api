@@ -1,4 +1,4 @@
-import { IHashComparer } from '../../protocols/criptography/hash-comparer'
+import { IHashComparer } from '@/data/protocols/criptography/hash-comparer'
 import {
   IAuthentication,
   IAuthenticationModel,

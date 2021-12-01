@@ -1,6 +1,6 @@
-import { IAddSurvey, IAddSurveyModel, IHttpRequest, IValidation } from './add-survey-protocols'
 import { AddSurveyController } from './add-survey-controller'
-import { badRequest, noContent, serverError } from '../../../helpers/http/http-helper'
+import { IAddSurvey, IAddSurveyModel, IHttpRequest, IValidation } from './add-survey-protocols'
+import { badRequest, noContent, serverError } from '@/presentation/helpers/http/http-helper'
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): IHttpRequest => ({

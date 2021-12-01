@@ -1,8 +1,8 @@
-import { IController, IHttpRequest, IHttpResponse } from '../../presentation/protocols'
 import { LogControllerDecorator } from './log-controller-decorator'
-import { ILogErrorRepository } from '../../data/protocols/db/log/log-error-repository'
-import { IAccountModel } from '../../domain/models/account'
-import { serverError, success } from '../../presentation/helpers/http/http-helper'
+import { serverError, success } from '@/presentation/helpers/http/http-helper'
+import { IAccountModel } from '@/domain/models/account'
+import { ILogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
+import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 const makeController = (): IController => {
   class ControllerStub implements IController {

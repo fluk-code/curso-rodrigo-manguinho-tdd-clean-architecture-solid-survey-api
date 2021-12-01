@@ -1,6 +1,6 @@
 
 import { Request, RequestHandler, Response } from 'express'
-import { IController, IHttpRequest } from '../../../presentation/protocols'
+import { IController, IHttpRequest } from '@/presentation/protocols'
 
 export const adaptRoute = (controller: IController): RequestHandler => {
   return async (req: Request, res: Response) => {
