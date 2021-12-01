@@ -3,10 +3,12 @@ version: '3.7'
 services:
   app: 
     image: node:14
-    container_name: suvey-api
+    container_name: survey-api
     working_dir: /usr/app
     restart: always
     command: bash -c "yarn install --only=prod && yarn debug"
+    environment:
+      - MONGO_URL=mongodb://root:survey@mongodb:27017/clean-node-api?authSource=admin
     volumes:
       - ./:/usr/app/
     ports:
